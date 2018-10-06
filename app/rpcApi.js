@@ -2,7 +2,7 @@ var utils = require("./utils.js");
 
 var genesisCoinbaseTransactionTxid = "2f143435cd7d80fe1cc95cea276d6897a86c80ec113d4e627ff4724bf0583dc1";
 var genesisCoinbaseTransaction = {
-    "hash":"130df13ce210c921e1f8a1b707fae519ce1427073bc850d794ac010c0ff7a3a5",
+    "hash":"232ace55f48def20f829e563e21af9ab0c2303bf1f603c8d2cb4693efa73bce7",
     "confirmations": 13254,
     "strippedsize": 307,
     "size": 307,
@@ -174,7 +174,7 @@ function getBlockByHeight(blockHeight) {
 	console.log("getBlockByHeight: " + blockHeight);
 	if(blockHeight == 0)
     {
-        resolve({ success:true, getblockhash:"130df13ce210c921e1f8a1b707fae519ce1427073bc850d794ac010c0ff7a3a5", getblock:genesisCoinbaseTransaction });
+        resolve({ success:true, getblockhash:"232ace55f48def20f829e563e21af9ab0c2303bf1f603c8d2cb4693efa73bce7", getblock:genesisCoinbaseTransaction });
     }else
     {
         return new Promise(function(resolve, reject) {
@@ -395,7 +395,7 @@ function getBlockData(rpcClient, blockHash, txLimit, txOffset)
 {
 	console.log("getBlockData: " + blockHash);
 
-    if(blockHash == "130df13ce210c921e1f8a1b707fae519ce1427073bc850d794ac010c0ff7a3a5")
+    if(blockHash == "232ace55f48def20f829e563e21af9ab0c2303bf1f603c8d2cb4693efa73bce7")
     {
         return new Promise(function(resolve, reject)
         {
