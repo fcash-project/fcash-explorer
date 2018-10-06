@@ -1,0 +1,75 @@
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no")
+		
+		link(rel="stylesheet", href="/libs/bootstrap.min.css")
+		link(rel="stylesheet", href="/libs/font-awesome.min.css")
+		link(rel="stylesheet", href="/libs/fonts-css.css")
+		link(rel="stylesheet", href="/libs/highlight.js-default.min.css")
+		link(rel='stylesheet', href='/css/styling.css')
+
+		link(rel="icon", type="image/png", sizes="32x32", href="/img/favicons/favicon-32x32.png")
+		link(rel="icon", type="image/png", sizes="96x96", href="/img/favicons/favicon-96x96.png")
+		link(rel="icon", type="image/png", sizes="16x16", href="/img/favicons/favicon-16x16.png")
+
+		block headContent
+			title Fcash Explorer
+		
+	body
+		nav(class="navbar navbar-expand-lg navbar-dark bg-dark mb-4")
+			div(class="container")
+				a(class="navbar-brand", href="/")
+					span
+						img(src="/img/logo/logo-64.png", class="header-image")
+						span Fcash Explorer
+						
+				button(type="button", class="navbar-toggler navbar-toggler-right", data-toggle="collapse", data-target="#navbarNav")
+					span(class="navbar-toggler-icon")
+					
+				div(class="collapse navbar-collapse", id="navbarNav")
+					if (client)
+						ul(class="navbar-nav mr-auto")
+							if (debug)
+								li(class="nav-item")
+									a(href="/terminal", class="nav-link") RPC Terminal
+							li(class="nav-item")
+								a(href="/node-info", class="nav-link") Node Info
+							li(class="nav-item")
+								a(href="/mempool", class="nav-link") Mempool Info
+						form(method="post", action="/search", class="form-inline")
+							div(class="input-group")
+								input(type="text", class="form-control form-control-sm", name="query", placeholder="block height, block hash, txid", value=(query), style="width: 250px;")
+								span(class="input-group-btn")
+									input(type="submit", class="btn btn-primary", value="Search")
+			
+		div(class="container")
+			if (userMessage)
+				div(class="alert", class=(userMessageType ? ("alert-"  + userMessageType) : "alert-info"), role="alert")
+					span !{userMessage}
+			
+			block content
+
+			div(style="margin-bottom: 30px;")
+
+
+		script(src="/libs/jquery-3.2.1.min.js",  crossorigin="anonymous")
+		script(src="/libs/popper.min.js", crossorigin="anonymous")
+		script(src="/libs/tether.min.js", crossorigin="anonymous")
+		script(src="/libs/bootstrap.min.js", crossorigin="anonymous")
+
+		script(src="/libs/highlight.min.js")
+		
+		script(src="/libs/raven.min.js", crossorigin="anonymous")
+		script.
+			Raven.config('https://0bf20e8357a748cab8aa9d35c0f790dd@sentry.io/130800').install();
+			
+			$(document).ready(function() {
+				$('[data-toggle="tooltip"]').tooltip();
+				$('[data-toggle="popover"]').popover({html:true});
+			});
+
+			hljs.initHighlightingOnLoad();
+		
+		block endOfBody

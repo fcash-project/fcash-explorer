@@ -1,0 +1,40 @@
+extends layout
+
+block headContent
+	title Fcash Blockchain Explorer - Home
+	
+block content
+	h1 Fcash Blockchain Explorer
+	hr
+
+	:markdown-it
+		**Fcash Explorer** is [open-source](https://github.com/fcash-project/explorer). If you run your own [Fcash Full Node](https://www.fcash.cash/), **Fcash Explorer** can easily run alongside it, communicating via RPC calls. See the project [ReadMe](https://github.com/fcash-project/explorer) for a list of features and instructions for running.
+
+	
+	if (latestBlocks)
+		h3 Latest Blocks
+			if (getblockchaininfo.initialblockdownload)
+				small  (#{(getblockchaininfo.headers - getblockchaininfo.blocks).toLocaleString()} behind)
+
+
+		- var blocks = latestBlocks;
+		- var blockOffset = 0;
+
+		include includes/blocks-list.pug
+
+		hr
+		a(href="/blocks", class="btn btn-primary btn-block") See more
+
+	hr
+
+	div(class="")
+		ul
+			li MIT-licensed source code available on github: 
+				a(href="https://github.com/fcash-project/explorer") dreamxyp/fcash-explorer
+
+			li Public instance maintained at 
+				a(href="https://explorer.fcash.cash") https://explorer.fcash.cash
+			
+			li Donate: 
+				a(href="fcash:Feu5443ZTWGg5wfHPkiPE6vuq8HE4mARSE") Fcash
+				span  - Feu5443ZTWGg5wfHPkiPE6vuq8HE4mARSE
